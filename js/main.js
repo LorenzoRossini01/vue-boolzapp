@@ -183,6 +183,21 @@ createApp({
     sendMessage() {
       const newMessageCopy = this.newMessage;
       this.contacts[this.activeChat].messages.push(newMessageCopy);
+      this.newMessage = {
+        date: "10/01/2020 15:51:00",
+        message: "",
+        status: "sent",
+      };
+    },
+    ContactResponse() {
+      setTimeout(() => {
+        const newContactMessageCopy = {
+          date: "",
+          message: "ok",
+          status: "received",
+        };
+        this.contacts[this.activeChat].messages.push(newContactMessageCopy);
+      }, 1000);
     },
   },
 }).mount("#app");

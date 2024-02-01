@@ -88,7 +88,9 @@
                   </div>
                   <div class="col flex-grow-1 contact-details">
                     <p>{{contact.name}}</p>
-                    <span>{{contact.messages[0].message}}</span>
+                    <span
+                      >{{contact.messages[contact.messages.length-1].message}}</span
+                    >
                   </div>
                   <div class="col-2 last-message-hour">
                     <p>12:00</p>
@@ -139,12 +141,13 @@
                     class="form-control"
                     placeholder="Scrivi un messaggio"
                     v-model="newMessage.message"
+                    @keyup.enter="sendMessage(),ContactResponse()"
                   />
                   <button
                     class="btn btn-success"
                     type="button"
                     id="button-addon2"
-                    @click="sendMessage() "
+                    @click="sendMessage(),ContactResponse() "
                   >
                     <i class="fa-solid fa-paper-plane text-white"></i>
                   </button>
