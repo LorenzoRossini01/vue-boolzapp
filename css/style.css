@@ -3,3 +3,21 @@
   border: 2px dashed red;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.header {
+  height: 75px;
+  background-color: antiquewhite;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.profile-pic img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
