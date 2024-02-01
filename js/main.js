@@ -173,6 +173,9 @@ createApp({
         status: "sent",
       },
       searchBar: "",
+
+      dropdownList: ["Message info", "Delete message"],
+      show: false,
     };
   },
 
@@ -199,6 +202,9 @@ createApp({
         };
         this.contacts[this.activeChat].messages.push(newContactMessageCopy);
       }, 1000);
+    },
+    showDropdown() {
+      this.show = !this.show;
     },
   },
 }).mount("#app");

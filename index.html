@@ -124,11 +124,32 @@
             <div class="chat-container">
               <div
                 class="chat-balloon"
-                v-for="message in contacts[activeChat].messages"
+                v-for="(message, messIndex) in contacts[activeChat].messages"
                 :class="'message-'+message.status"
               >
-                <div class="message-text">{{message.message}}</div>
-                <div class="message-hour">10:00</div>
+                <div class="message-col-left">
+                  <div class="message-text">{{message.message}}</div>
+                </div>
+                <div class="message-col-right">
+                  <i
+                    class="fa-solid fa-chevron-down"
+                    @click="showDropdown()"
+                  ></i>
+                  <div class="message-hour">10:00</div>
+                </div>
+                <div class="dropdown">
+                  <ul class="dropdown-options">
+                    <li
+                      v-for="element in dropdownList"
+                      v-if="show"
+                      class="bg-light text-center"
+                    >
+                      <a class="dropdown-item py-1 px-2" href="#"
+                        >{{element}}</a
+                      >
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
             <!-- chat textarea  -->

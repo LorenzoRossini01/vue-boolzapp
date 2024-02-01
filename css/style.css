@@ -166,3 +166,33 @@ body i {
   text-align: end;
   vertical-align: bottom;
 }
+
+.chat-balloon {
+  position: relative;
+}
+
+.chat-balloon,
+.message-col-right {
+  display: flex;
+  justify-content: space-between;
+  align-content: end;
+}
+.message-col-right {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dropdown-options {
+  list-style: none;
+}
+
+.dropdown-item:hover {
+  background-color: #c4c4c4;
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 2.5rem;
+  z-index: 1;
+}
