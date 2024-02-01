@@ -172,6 +172,7 @@ createApp({
         message: "",
         status: "sent",
       },
+      searchBar: "",
     };
   },
 
