@@ -150,12 +150,12 @@ body i {
   padding-right: 0.4rem;
 }
 
-.chat-container .message-sent {
+.chat-container .message-received {
   background-color: #ffffff;
   border-bottom-left-radius: 0;
   margin-right: auto;
 }
-.chat-container .message-received {
+.chat-container .message-sent {
   background-color: #d5f9ba;
   border-bottom-right-radius: 0;
   margin-left: auto;

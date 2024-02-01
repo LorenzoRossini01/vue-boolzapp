@@ -166,8 +166,23 @@ createApp({
           ],
         },
       ],
+      activeChat: 0,
+      newMessage: {
+        date: "10/01/2020 15:51:00",
+        message: "",
+        status: "sent",
+      },
     };
   },
 
-  methods: {},
+  methods: {
+    goToChat(index) {
+      this.activeChat = index;
+    },
+
+    sendMessage() {
+      const newMessageCopy = this.newMessage;
+      this.contacts[this.activeChat].messages.push(newMessageCopy);
+    },
+  },
 }).mount("#app");
