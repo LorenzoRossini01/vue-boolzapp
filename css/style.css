@@ -4,14 +4,28 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+body i {
+  cursor: pointer;
+}
+
 .container {
-  height: calc(100vh - 100px);
+  height: 1000px;
   overflow: hidden;
+}
+.left-col,
+.right-col {
+  overflow: hidden;
+  height: 1000px;
 }
 /* header  */
 .header {
   height: 65px;
-  background-color: antiquewhite;
+  background-color: #eaeaea;
+}
+
+.header i,
+.input-group i {
+  color: #b1b1b1;
 }
 
 .header .profile-pic {
@@ -26,10 +40,14 @@
 }
 
 /* notify banner  */
+.notify {
+  background-color: #8edafc;
+}
 .notify-icon {
   height: 40px;
   aspect-ratio: 1;
   background-color: white;
+  color: #8edafc;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,14 +64,20 @@
 }
 /* tumbs */
 .contact-thumb-container {
-  overflow: auto;
+  overflow-y: scroll;
+  height: 100%;
+  background-color: white;
 }
 .contact-thumb {
   width: 100%;
   height: 75px;
-  background-color: aqua;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
+}
+
+.contact-thumb:hover {
+  background-color: rgb(211, 211, 211);
 }
 
 .contact-thumb .row {
@@ -68,17 +92,16 @@
   border-radius: 50%;
 }
 
-.contact-thumb .contact-details p {
+.contact-details p {
   margin: 0;
   font-weight: 600;
 }
-
-.contact-thumb .contact-details {
+.contact-details {
   display: flex;
   flex-direction: column;
 }
 
-.contact-thumb .contact-details span {
+.contact-details span {
   font-size: 0.75rem;
   line-height: 0.75rem;
   color: grey;
@@ -86,4 +109,60 @@
 .contact-thumb .last-message-hour {
   font-size: 0.5rem;
   text-align: end;
+}
+
+/* right col  */
+.chat-container {
+  overflow-y: scroll;
+  height: calc(1000px - 65px - 75px);
+  background-image: url(../img/mine.jpg);
+}
+
+.chat-textbox {
+  height: 75px;
+  background-color: #f3eeea;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.chat-textbox i {
+  vertical-align: middle;
+  line-height: 5px;
+}
+
+.chat-textbox .input-text {
+  vertical-align: middle;
+}
+
+.chat-container {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.chat-container .message-sent,
+.chat-container .message-received {
+  padding: 1rem;
+  width: 250px;
+  border-radius: 10px;
+  margin-top: 0.7rem;
+  padding-bottom: 0.2rem;
+  padding-right: 0.4rem;
+}
+
+.chat-container .message-sent {
+  background-color: #ffffff;
+  border-bottom-left-radius: 0;
+  margin-right: auto;
+}
+.chat-container .message-received {
+  background-color: #d5f9ba;
+  border-bottom-right-radius: 0;
+  margin-left: auto;
+}
+
+.chat-container .message-hour {
+  font-size: 0.5rem;
+  text-align: end;
+  vertical-align: bottom;
 }

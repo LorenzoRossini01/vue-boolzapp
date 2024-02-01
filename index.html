@@ -27,12 +27,12 @@
     <!-- #link css -->
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body>
+  <body class="bg-dark">
     <div id="app">
       <div class="container my-5 bg-dark p-0">
         <div class="row g-0">
           <!-- #left col  -->
-          <div class="col-4">
+          <div class="left-col col-4">
             <!-- header contact  -->
             <div
               class="header d-flex justify-content-between align-items-center px-2 border-end border-2"
@@ -49,11 +49,9 @@
             </div>
 
             <!-- banner avviso -->
-            <div
-              class="notify d-flex align-items-center bg-info py-2 px-3 gap-3"
-            >
+            <div class="notify d-flex align-items-center py-2 px-3 gap-3">
               <div class="notify-icon">
-                <i class="fa-solid fa-bell-slash text-info"></i>
+                <i class="fa-solid fa-bell-slash"></i>
               </div>
               <div class="notify-message d-flex flex-column">
                 <p class="m-0">Ricevi notifiche di nuovi messaggi</p>
@@ -70,7 +68,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  placeholder=""
+                  placeholder="Cerca o inizia una nuova chat"
                   aria-label="Example text with button addon"
                   aria-describedby="button-addon1"
                 />
@@ -96,19 +94,106 @@
             </div>
           </div>
           <!-- #right col  -->
-          <div class="col-8">
+          <div class="right-col col-8">
             <!-- header chat  -->
             <div
               class="header d-flex justify-content-between align-items-center px-3"
             >
               <div class="profile-pic">
-                <img src="./img/avatar_1.jpg" alt="" />
-                <span class="h4">Sofia</span>
+                <img :src="contacts[0].avatar" alt="" />
+                <div class="contact-details">
+                  <p>{{contacts[0].name}}</p>
+                  <span>Ultimo accesso oggi alle xx:xx</span>
+                </div>
               </div>
               <div class="d-flex gap-3">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <i class="fa-solid fa-paperclip"></i>
                 <i class="fa-solid fa-ellipsis-vertical"></i>
+              </div>
+            </div>
+            <!-- chat container  -->
+            <div class="chat-container">
+              <div class="chat-balloon message-sent">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-received">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-sent">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-received">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-sent">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-received">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-sent">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-received">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-sent">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-received">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-sent">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-received">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-sent">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+              <div class="chat-balloon message-received">
+                <div class="message-text">ciao</div>
+                <div class="message-hour">10:00</div>
+              </div>
+            </div>
+            <!-- chat textarea  -->
+            <div class="chat-textbox gap-3 p-3">
+              <div class="emoji-button mx-3 py-1">
+                <i class="fa-regular fa-face-smile fa-lg text-secondary"></i>
+              </div>
+              <div class="input-text flex-grow-1">
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Scrivi un messaggio"
+                  />
+                  <button
+                    class="btn btn-success"
+                    type="button"
+                    id="button-addon2"
+                  >
+                    <i class="fa-solid fa-paper-plane text-white"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="rec-mic mx-3 py-1">
+                <i class="fa-solid fa-microphone fa-lg text-secondary"></i>
               </div>
             </div>
           </div>
