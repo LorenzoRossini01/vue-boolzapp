@@ -142,12 +142,12 @@ body i {
 
 .chat-container .message-sent,
 .chat-container .message-received {
-  padding: 1rem;
+  /* padding: 0.2rem; */
   width: 250px;
   border-radius: 10px;
   margin-top: 0.7rem;
-  padding-bottom: 0.2rem;
-  padding-right: 0.4rem;
+  /* padding-bottom: 0.2rem; */
+  /* padding-right: 0.4rem; */
 }
 
 .chat-container .message-received {
@@ -169,19 +169,26 @@ body i {
 
 .chat-balloon {
   position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
 }
 
-.chat-balloon,
-.message-col-right {
+.chat-balloon {
   display: flex;
   justify-content: space-between;
   align-content: end;
 }
 .message-col-right {
+  display: flex;
+  padding: 0.2rem 0;
   flex-direction: column;
   gap: 1rem;
 }
 
+.message-col-right i {
+  padding-top: 1rem;
+}
 .dropdown-options {
   list-style: none;
 }
