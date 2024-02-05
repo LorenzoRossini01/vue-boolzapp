@@ -4,12 +4,16 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+:root {
+  --app-height: 90vh;
+}
+
 body {
   background-image: linear-gradient(
     to bottom,
     #009688 0px,
-    #009688 15vh,
-    #dddbd1 15vh,
+    #009688 175px,
+    #dddbd1 175px,
     #d2dbdc 100%
   );
   font-family: "Lato", "sans-serif";
@@ -22,17 +26,18 @@ body i {
 }
 
 .container {
-  height: 100vw;
+  height: var(--app-height);
   overflow: hidden;
+  min-width: 90vw;
 }
 .left-col,
 .right-col {
   overflow: hidden;
-  height: 100vw;
+  height: var(--app-height);
 }
 /* header  */
 .header {
-  height: 65px;
+  height: 75px;
   background-color: #eaeaea;
 }
 
@@ -133,7 +138,7 @@ body i {
 /* right col  */
 .chat-container {
   overflow-y: scroll;
-  height: calc(100vw - 65px - 75px);
+  height: calc(var(--app-height) - 75px - 75px);
   background-image: url(../img/mine.jpg);
 }
 
