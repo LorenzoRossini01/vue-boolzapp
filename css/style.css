@@ -22,13 +22,13 @@ body i {
 }
 
 .container {
-  height: 70vh;
+  height: 92vh;
   overflow: hidden;
 }
 .left-col,
 .right-col {
   overflow: hidden;
-  height: 70vh;
+  height: 92vh;
 }
 /* header  */
 .header {
@@ -133,7 +133,7 @@ body i {
 /* right col  */
 .chat-container {
   overflow-y: scroll;
-  height: calc(70vh - 65px - 75px);
+  height: calc(92vh - 65px - 75px);
   background-image: url(../img/mine.jpg);
 }
 
