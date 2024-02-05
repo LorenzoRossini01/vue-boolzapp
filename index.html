@@ -100,8 +100,8 @@
                 v-show="contact.name.toLowerCase().includes(searchBar) || contact.name.toUpperCase().includes(searchBar)"
                 @click="goToChat(index)"
               >
-                <div class="thumb-row px-3">
-                  <div class="col-3 profile-pic">
+                <div class="thumb-row align-items-start">
+                  <div class="col-2 profile-pic">
                     <img :src="contact.avatar" alt="" />
                   </div>
                   <div class="col-6 contact-details">
@@ -111,7 +111,7 @@
                     >
                   </div>
                   <div
-                    class="col-3 last-message-hour"
+                    class="col-4 last-message-hour"
                     v-show="contact.messages"
                   >
                     <p>{{getLastAccessFromMessages(contact.messages)}}</p>

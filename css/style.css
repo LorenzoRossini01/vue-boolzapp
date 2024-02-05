@@ -34,6 +34,7 @@ body i {
 .right-col {
   overflow: hidden;
   height: var(--app-height);
+  background-color: white;
 }
 /* header  */
 .header {
@@ -82,15 +83,13 @@ body i {
 }
 /* tumbs */
 .contact-thumb-container {
-  overflow-y: scroll;
-  height: 100%;
-  background-color: white;
+  overflow-y: auto;
+  height: calc(var(--app-height) - 40px - 75px - 50px);
 }
 .contact-thumb {
-  width: 100%;
-  height: 75px;
+  width: calc(100% - 20px);
+  height: 70px;
   display: flex;
-  justify-content: space-between;
   cursor: pointer;
 }
 
@@ -100,34 +99,37 @@ body i {
 
 .contact-thumb .thumb-row {
   display: flex;
-  align-items: start;
-  justify-content: space-between;
-  width: 100%;
+  gap: 15px;
+  width: calc(100% - 20px);
+  padding-left: 10px;
 }
 .contact-thumb .profile-pic {
-  height: 100%;
+  height: 50px;
 }
 
 .contact-thumb .profile-pic img {
-  height: 100%;
+  height: 50px;
   border-radius: 50%;
 }
 
 .contact-details p {
-  margin: 0;
   font-weight: 600;
+  line-height: 0.9rem;
+  vertical-align: top;
 }
 .contact-details {
+  margin-left: 15px;
   display: flex;
   flex-direction: column;
 }
 
 .contact-details span {
   font-size: 0.75rem;
-  line-height: 0.75rem;
+  line-height: 1rem;
   color: grey;
+  overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  text-wrap: nowrap;
 }
 .contact-thumb .last-message-hour {
   font-size: 0.5rem;
