@@ -4,6 +4,19 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+body {
+  background-image: linear-gradient(
+    to bottom,
+    #009688 0px,
+    #009688 15vh,
+    #dddbd1 15vh,
+    #d2dbdc 100%
+  );
+  font-family: "Lato", "sans-serif";
+  overflow: hidden;
+  height: 100vh;
+}
+
 body i {
   cursor: pointer;
 }
@@ -80,7 +93,10 @@ body i {
   background-color: rgb(211, 211, 211);
 }
 
-.contact-thumb .row {
+.contact-thumb .thumb-row {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
   width: 100%;
 }
 .contact-thumb .profile-pic {
@@ -105,10 +121,13 @@ body i {
   font-size: 0.75rem;
   line-height: 0.75rem;
   color: grey;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .contact-thumb .last-message-hour {
   font-size: 0.5rem;
   text-align: end;
+  color: grey;
 }
 
 /* right col  */
@@ -142,12 +161,9 @@ body i {
 
 .chat-container .message-sent,
 .chat-container .message-received {
-  /* padding: 0.2rem; */
   width: 250px;
   border-radius: 10px;
   margin-top: 0.7rem;
-  /* padding-bottom: 0.2rem; */
-  /* padding-right: 0.4rem; */
 }
 
 .chat-container .message-received {
@@ -161,6 +177,13 @@ body i {
   margin-left: auto;
 }
 
+.message-received i {
+  color: #ffffff;
+}
+.message-sent i {
+  color: #d5f9ba;
+}
+
 .chat-container .message-hour {
   font-size: 0.5rem;
   text-align: end;
@@ -169,35 +192,31 @@ body i {
 
 .chat-balloon {
   position: relative;
-  display: flex;
-  align-items: center;
   padding: 0 1rem;
 }
 
-.chat-balloon {
+.message-top {
   display: flex;
   justify-content: space-between;
-  align-content: end;
-}
-.message-col-right {
-  display: flex;
-  padding: 0.2rem 0;
-  flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+  padding-top: 0.5rem;
 }
 
-.message-col-right i {
-  padding-top: 1rem;
+.chat-balloon:hover i {
+  color: #b1b1b1;
 }
-.dropdown-options {
+
+.dropdownlist-options {
   list-style: none;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .dropdown-item:hover {
   background-color: #c4c4c4;
 }
 
-.dropdown {
+.dropdownlist {
   position: absolute;
   right: 0;
   top: 2.5rem;

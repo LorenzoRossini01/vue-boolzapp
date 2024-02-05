@@ -24,12 +24,28 @@
       crossorigin="anonymous"
     />
 
+    <!-- link googlefonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- #link css -->
     <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- #script vue 3 cdn -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!-- luxon cdn  -->
+    <script src="
+        https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js
+        "></script>
   </head>
-  <body class="bg-dark">
+  <body>
     <div id="app">
-      <div class="container my-5 bg-dark p-0">
+      <div class="container my-5 p-0">
         <div class="row g-0">
           <!-- #left col  -->
           <div class="left-col col-4">
@@ -38,7 +54,7 @@
               class="header d-flex justify-content-between align-items-center px-2 border-end border-2"
             >
               <div class="profile-pic">
-                <img src="./img/avatar_1.jpg" alt="" />
+                <img src="./img/avatar_io.jpg" alt="" />
                 <span class="h4">Sofia</span>
               </div>
               <div class="d-flex gap-3">
@@ -79,23 +95,26 @@
             <!-- contact thumb  -->
             <div class="contact-thumb-container">
               <div
-                class="contact-thumb py-2 px-0"
+                class="contact-thumb py-2"
                 v-for="(contact, index) in contacts"
                 v-show="contact.name.toLowerCase().includes(searchBar) || contact.name.toUpperCase().includes(searchBar)"
                 @click="goToChat(index)"
               >
-                <div class="row px-3">
+                <div class="thumb-row px-3">
                   <div class="col-3 profile-pic">
                     <img :src="contact.avatar" alt="" />
                   </div>
-                  <div class="col flex-grow-1 contact-details">
+                  <div class="col-6 contact-details">
                     <p>{{contact.name}}</p>
-                    <span
-                      >{{contact.messages[contact.messages.length-1].message}}</span
+                    <span v-show="contact.messages"
+                      >{{getLastMessageFromMessages(contact.messages)}}</span
                     >
                   </div>
-                  <div class="col-2 last-message-hour">
-                    <p>12:00</p>
+                  <div
+                    class="col-3 last-message-hour"
+                    v-show="contact.messages"
+                  >
+                    <p>{{getLastAccessFromMessages(contact.messages)}}</p>
                   </div>
                 </div>
               </div>
@@ -111,7 +130,12 @@
                 <img :src="contacts[activeChat].avatar" alt="" />
                 <div class="contact-details">
                   <p>{{contacts[activeChat].name}}</p>
-                  <span>Ultimo accesso oggi alle xx:xx</span>
+                  <div class="last-access">
+                    <span class="me-1">Ultimo accesso</span>
+                    <span
+                      >{{getLastAccessFromMessages(contacts[activeChat].messages)}}</span
+                    >
+                  </div>
                 </div>
               </div>
               <div class="d-flex gap-3">
@@ -127,26 +151,36 @@
                 v-for="(message, messIndex) in contacts[activeChat].messages"
                 :class="'message-'+message.status"
               >
-                <div class="message-col-left">
+                <div class="message-top">
                   <div class="message-text">{{message.message}}</div>
-                </div>
-                <div class="message-col-right">
                   <i
                     class="fa-solid fa-chevron-down"
-                    @click="showDropdown()"
+                    @click="showDropdown(messIndex)"
                   ></i>
-                  <div class="message-hour">10:00</div>
                 </div>
-                <div class="dropdown">
-                  <ul class="dropdown-options">
-                    <li
-                      v-for="element in dropdownList"
-                      v-if="show"
-                      class="bg-light text-center"
-                    >
-                      <a class="dropdown-item py-1 px-2" href="#"
-                        >{{element}}</a
+                <div class="message-bottom">
+                  <div class="message-hour">{{formatDate(message.date)}}</div>
+                </div>
+
+                <div class="dropdownlist rounded">
+                  <ul
+                    v-if="messageDropdown.show && messageDropdown.index==messIndex"
+                    @mouseleave="hideDropdownList()"
+                    class="dropdownlist-options p-0 m-0"
+                  >
+                    <li class="text-center bg-light rounded-top">
+                      <a class="dropdown-item py-1 px-2 rounded-top" href="#">
+                        Message info
+                      </a>
+                    </li>
+                    <li class="text-center bg-light rounded-bottom">
+                      <a
+                        class="dropdown-item py-1 px-2 rounded-bottom"
+                        href="#"
+                        @click="delateMessage(messIndex)"
                       >
+                        Delete message
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -164,13 +198,13 @@
                     class="form-control"
                     placeholder="Scrivi un messaggio"
                     v-model="newMessage.message"
-                    @keyup.enter="sendMessage(),ContactResponse()"
+                    @keyup.enter="sendMessage()"
                   />
                   <button
                     class="btn btn-success"
                     type="button"
                     id="button-addon2"
-                    @click="sendMessage(),ContactResponse() "
+                    @click="sendMessage() "
                   >
                     <i class="fa-solid fa-paper-plane text-white"></i>
                   </button>
@@ -184,9 +218,6 @@
         </div>
       </div>
     </div>
-
-    <!-- #script vue 3 cdn -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <!-- #main js -->
     <script src="./js/main.js"></script>

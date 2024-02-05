@@ -1,5 +1,8 @@
 const { createApp } = Vue;
 
+const DateTime = luxon.DateTime;
+console.log(DateTime);
+
 createApp({
   data() {
     return {
@@ -168,15 +171,23 @@ createApp({
       ],
       activeChat: 0,
       newMessage: {
-        date: "10/01/2020 15:51:00",
+        date: this.getCurrentTime(),
         message: "",
         status: "sent",
       },
       searchBar: "",
 
-      dropdownList: ["Message info", "Delete message"],
-      show: false,
+      messageDropdown: {
+        show: false,
+        index: 0,
+      },
     };
+  },
+
+  computed: {
+    thisActiveChat() {
+      return this.contacts[this.activeChat];
+    },
   },
 
   methods: {
@@ -184,27 +195,79 @@ createApp({
       this.activeChat = index;
     },
 
+    getLastAccessFromMessages(messages) {
+      if (!messages) return "";
+      const receivedMessages = messages.filter(
+        (message) => message.status == "received"
+      );
+      const lastMessage = receivedMessages.at(-1);
+
+      return lastMessage ? this.formatDate(lastMessage.date) : "";
+    },
+
+    getLastMessageFromMessages(messages) {
+      if (!messages) return;
+      const lastMessage = messages.at(-1);
+      return lastMessage ? lastMessage.message : "";
+    },
+
+    getCurrentTime() {
+      const now = new Date();
+
+      const day = now.getDate() < 10 ? "0" + now.getDate() : now.getDate();
+      const month =
+        now.getMonth() + 1 < 10
+          ? "0" + (now.getMonth() + 1)
+          : now.getMonth() + 1;
+      const year = now.getFullYear();
+      const hour = now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
+      const minutes =
+        now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+      const second =
+        now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
+
+      return `${day}/${month}/${year} ${hour}:${minutes}:${second}`;
+    },
+
+    formatDate(date) {
+      const messageDate = DateTime.fromFormat(date, "dd/MM/yyyy HH:mm:ss");
+      const messageDateText = messageDate.toLocaleString(DateTime.TIME_SIMPLE);
+      return messageDateText;
+    },
+
     sendMessage() {
+      if (!this.newMessage.message) return;
       const newMessageCopy = this.newMessage;
-      this.contacts[this.activeChat].messages.push(newMessageCopy);
+      this.thisActiveChat.messages.push(newMessageCopy);
       this.newMessage = {
-        date: "10/01/2020 15:51:00",
+        date: this.getCurrentTime(),
         message: "",
         status: "sent",
       };
+
+      setTimeout(this.ContactResponse, 1000);
     },
+
     ContactResponse() {
-      setTimeout(() => {
-        const newContactMessageCopy = {
-          date: "",
-          message: "ok",
-          status: "received",
-        };
-        this.contacts[this.activeChat].messages.push(newContactMessageCopy);
-      }, 1000);
+      const newContactMessageCopy = {
+        date: this.getCurrentTime(),
+        message: "ok",
+        status: "received",
+      };
+      this.thisActiveChat.messages.push(newContactMessageCopy);
     },
-    showDropdown() {
-      this.show = !this.show;
+
+    showDropdown(messIndex) {
+      this.messageDropdown.index = messIndex;
+      this.messageDropdown.show = !this.messageDropdown.show;
+    },
+
+    hideDropdownList() {
+      this.messageDropdown.show = false;
+    },
+
+    delateMessage(i) {
+      this.thisActiveChat.messages.splice(i, 1);
     },
   },
 }).mount("#app");
